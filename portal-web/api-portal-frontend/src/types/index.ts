@@ -39,12 +39,16 @@ export interface BaseProduct {
   description: string;
   status: ProductStatus;
   enableConsumerAuth: boolean | null;
+  autoApprove?: boolean;
   type: ProductType;
   document: string | null;
   icon: string | null;
   category: ProductCategory;
   productType: ProductType;
   productName: string;
+  mcpConfig: any;
+  updatedAt: string;
+  lastUpdated: string;
 }
 
 // REST API 产品
@@ -54,6 +58,7 @@ export interface RestApiProduct extends BaseProduct {
 }
 
 // MCP Server 产品
+// @ts-ignore
 export interface McpServerProduct extends BaseProduct {
   apiSpec: null;
   mcpSpec?: McpServerConfig; // 保持向后兼容

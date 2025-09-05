@@ -115,6 +115,18 @@ export const portalApi = {
   // 审批consumer
   approveConsumer: (consumerId: string) => {
     return api.patch(`/consumers/${consumerId}/status`)
+  },
+  // 获取Consumer的订阅列表
+  getConsumerSubscriptions: (consumerId: string, params?: { page?: number; size?: number; status?: string }) => {
+    return api.get(`/consumers/${consumerId}/subscriptions`, { params })
+  },
+  // 审批订阅申请
+  approveSubscription: (consumerId: string, productId: string) => {
+    return api.patch(`/consumers/${consumerId}/subscriptions/${productId}`)
+  },
+  // 删除订阅
+  deleteSubscription: (consumerId: string, productId: string) => {
+    return api.delete(`/consumers/${consumerId}/subscriptions/${productId}`)
   }
 }
 
@@ -177,6 +189,10 @@ export const gatewayApi = {
     return api.get(`/gateways/apig`, { params: {
       ...data,
     } })
+  },
+  // 获取ADP网关
+  getAdpGateways: (data: any) => {
+    return api.post(`/gateways/adp`, data)
   },
   // 删除网关
   deleteGateway: (gatewayId: string) => {

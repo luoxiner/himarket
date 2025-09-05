@@ -48,7 +48,11 @@ public class ProductResult implements OutputConverter<ProductResult, Product> {
 
     private String category;
 
+    private Boolean autoApprove;
+
     private LocalDateTime createAt;
+
+    private LocalDateTime updatedAt;
 
     private APIConfigResult apiConfig;
 

@@ -17,32 +17,17 @@
  * under the License.
  */
 
-package com.alibaba.apiopenplatform.support.consumer;
+package com.alibaba.apiopenplatform.core.annotation;
 
-import lombok.Data;
+import org.springframework.security.access.prepost.PreAuthorize;
 
-@Data
-public class ConsumerAuthorizationRule {
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-    private Long id;
-    private String consumerAuthorizationRuleId;
-    private String consumerId;
-    private String expireMode;
-    private Long expireTimestamp;
-    private String gatewayId;
-    private String resourceId;
-
-    /**
-     * 资源类型枚举值说明：
-     * HttpApiRoute     - HTTP API路由
-     * RestApi          - REST API
-     * RestApiOperation - REST API操作
-     * HttpApi          - HTTP API（暂不支持授权）
-     * AiApi            - AI API
-     * LLM              - 大语言模型
-     * Agent            - 智能体
-     * MCP              - MCP服务
-     * MCPTool          - MCP工具
-     */
-    private String resourceType;
+@Target({ElementType.METHOD, ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+@PreAuthorize("hasRole('ADMIN') or hasRole('DEVELOPER')")
+public @interface AdminOrDeveloperAuth {
 }
